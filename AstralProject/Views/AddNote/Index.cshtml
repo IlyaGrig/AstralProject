@@ -1,0 +1,18 @@
+﻿@page
+@using AstralProject.Views.AddNote;
+
+@model IndexModel 
+@{
+   // ViewData["Title"] = "Добавление заметки";
+}
+<h2>@{/*Model.Mes*/ }</h2>
+<form method="post">
+    <label for="nameNote">Название заметки</label>
+    <input type="text" name="nameNote" id="nameNote" /> <br /><br />
+    <label for="headerNote">Описание заметки</label>
+    <input type="text" name="headerNote" id="headerNote" /> <br /><br />
+    <label for="textNote">Текст заметки</label>
+    <input type="text" name="textNote" id="textNote" /> <br /><br />
+    <input type="submit" value="Сохранить" />
+
+</form>
