@@ -1,16 +1,14 @@
-﻿@model  List<string>
-@{
-// ViewData["Title"] = "Добавление заметки";
+﻿@{
+    // ViewData["Title"] = "Добавление заметки";
 }
-@foreach (string it in Model)
-{<h2>@it</h2>}   
+<h1 >Добавление заметки</h1>
 <form method="post" action="~/AddNote/AddNewNote">
     <label for="nameNote">Название заметки</label>
     <input type="text" name="nameNote" id="nameNote" /> <br /><br />
     <label for="headerNote">Описание заметки</label>
     <input type="text" name="headerNote" id="headerNote" /> <br /><br />
     <label for="textNote">Текст заметки</label>
-    <input type="text" name="textNote" id="textNote" /> <br /><br />
+    <p><textarea cols="70" rows="8" type="text" name="textNote" id="textNote"></textarea></p>
+    @*<input size="100" type="text" name="textNote" id="textNote" /> <br /><br />*@
     <input type="submit" value="Сохранить" />
-    
 </form>
