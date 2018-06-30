@@ -1,0 +1,41 @@
+﻿@using AstralProject.Models.TestClasses;
+@model List<Note>
+<div>
+    <h1>Главная страница</h1>
+</div>
+<div>
+    <h1 >Запись успешно удалена</h1>
+</div>
+<form method="post" action="~/MainPage/Search">
+    <label for="nameNote">Поиск</label>
+    <input type="text" name="searchText" id="searchText" /> <br /><br />
+    <input type="submit" value="Искать" />
+</form>
+<table class="table">
+    <thead>
+        <tr><th>Название заметки</th><th>Краткое опсание</th><th>Дата добавления</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.IdNote</td>
+                <td>@note.NoteName</td>
+                <td>@note.HeaderNote</td>
+                <td>@note.DateNote</td>
+                <td>
+                    <form method="post" action="~/MainPage/Update">
+                        <input type="hidden" value="@note.IdNote" name="idNote" />
+                        <input type="submit" value="Изменить" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="~/MainPage/Delete">
+                        <input type="hidden" value="@note.IdNote" name="idNote" />
+                        <input type="submit" value="Удалить" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

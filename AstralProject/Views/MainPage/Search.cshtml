@@ -1,0 +1,18 @@
+﻿@using AstralProject.Models.TestClasses;
+@model IEnumerable<Note>
+<form method="post" action="~/MainPage/Search">
+    <label for="nameNote">Поиск</label>
+    <input type="text" name="searchText" id="searchText" /> <br /><br />
+    <input type="submit" value="Искать" />
+</form>
+<table class="table">
+    <thead>
+        <tr><th>Название заметки</th><th>Краткое опсание</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr><td>@note.NoteName</td><td>@note.HeaderNote</td></tr>
+        }
+    </tbody>
+</table>

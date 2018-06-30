@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AstralProject.Models.TestClasses;
-using Microsoft.AspNetCore.Http;
+﻿using AstralProject.Models.TestClasses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AstralProject.Controllers
@@ -13,22 +8,15 @@ namespace AstralProject.Controllers
      
         public ActionResult Index()
         {
-			List<string> q = new List<string> { "1","sd" };
-            return View(q);
+            return View();
         }
-
-     
-        
+		
         [HttpPost]
 		public ActionResult AddNewNote(string nameNote, string headerNote, string textNote)
 		{
 			Note.GlobalNotes.Add(new Note(nameNote, headerNote, textNote));
-			// return RedirectPermanent("~/MainPge");
-			return View("Index");
+			return RedirectPermanent("~/MainPage");
 	
-		}
-
-	 
-        
+		}      
     }
 }
