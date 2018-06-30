@@ -12,8 +12,9 @@ namespace AstralProject.Controllers
     {
      
         public ActionResult Index()
-        {			
-            return View();
+        {
+			List<string> q = new List<string> { "1","sd" };
+            return View(q);
         }
 
      
@@ -22,7 +23,8 @@ namespace AstralProject.Controllers
 		public ActionResult AddNewNote(string nameNote, string headerNote, string textNote)
 		{
 			Note.GlobalNotes.Add(new Note(nameNote, headerNote, textNote));
-		    return RedirectPermanent("~/MainPge");
+			// return RedirectPermanent("~/MainPge");
+			return View("Index");
 	
 		}
 

@@ -1,8 +1,9 @@
-﻿@page
+﻿@model  List<string>
 @{
 // ViewData["Title"] = "Добавление заметки";
 }
-<h2>@{/*Model.Mes*/} </h2>
+@foreach (string it in Model)
+{<h2>@it</h2>}   
 <form method="post" action="~/AddNote/AddNewNote">
     <label for="nameNote">Название заметки</label>
     <input type="text" name="nameNote" id="nameNote" /> <br /><br />
