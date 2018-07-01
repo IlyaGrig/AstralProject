@@ -3,6 +3,7 @@
 <h1>Измениние заметки</h1>
 <form method="post" action="~/MainPage/SaveUpdate">
     <input type="hidden" value="@Model.IdNote" name="idNote" />
+    <input type="hidden" value="@Model.Base64Icon" name="base64Icon" />
     <label for="nameNote">Название заметки</label>
     <input type="text" name="nameNote" id="nameNote" value="@Model.NoteName" /> <br /><br />
     <label for="headerNote">Описание заметки</label>
@@ -10,5 +11,5 @@
     <label for="textNote">Текст заметки</label><br /><br />
     @*<input size="100" type="text" name="textNote" id="textNote" value="@Model.TextNote" /> <br /><br />*@
     <p><textarea cols="70" rows="8" type="text" name="textNote" id="textNote">@Model.TextNote</textarea></p>
-    <input type="submit" value="Сохранить" />
+    <input type="submit" value="Изменить\Вернуться на главную" />
 </form>

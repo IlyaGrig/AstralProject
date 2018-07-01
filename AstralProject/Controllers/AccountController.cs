@@ -247,7 +247,7 @@ namespace AstralProject.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(MainPageController.Index), "Home");
         }
 
         [HttpPost]
@@ -335,7 +335,7 @@ namespace AstralProject.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(MainPageController.Index), "Home");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -455,7 +455,7 @@ namespace AstralProject.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(MainPageController.Index), "MainPage");
             }
         }
 

@@ -27,11 +27,12 @@ namespace AstralProject.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult SaveUpdate(int idNote,string nameNote, string headerNote, string textNote)
+		public ActionResult SaveUpdate(int idNote,string base64Icon,string nameNote, string headerNote, string textNote)
 		{
 			Note upNote = new Note(nameNote, headerNote, textNote);
 			upNote.IdNote = idNote;
 			upNote.DateNote = DateTime.Now;
+			upNote.Base64Icon = base64Icon;
 			Repository.DeleteFromCollection(idNote);
 			Note.GlobalNotes.Add(upNote);
 			return RedirectPermanent("~/MainPage");
