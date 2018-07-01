@@ -40,7 +40,14 @@ namespace AstralProject.Models.TestClasses
 			{
 				using (var response = client.GetStreamAsync($"https://avatars.dicebear.com/v2/identicon/{idNote}.svg").Result)
 				{
-					
+					MemoryStream q = new MemoryStream();
+					response.CopyTo(q);
+					byte[] byteArray = new byte[q.Length];
+					//while (response.CanRead)
+					//{
+						q.ReadAsync(byteArray, 0, (int)q.Length);
+					//}
+					imgInString64 = Convert.ToBase64String(byteArray);
 					
 				}
 			}
