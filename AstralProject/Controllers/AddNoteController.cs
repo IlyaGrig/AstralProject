@@ -14,7 +14,7 @@ namespace AstralProject.Controllers
         [HttpPost]
 		public ActionResult AddNewNote(string userId,string nameNote, string headerNote, string textNote)
 		{
-			//NotesDbContext context = new NotesDbContext();
+			NotesDbContext context = new NotesDbContext();
 			//context.Notes.Add(new Note(userId, nameNote, headerNote, textNote));
 			//context.SaveChanges();
 			Note.GlobalNotes.Add(new Note(userId, nameNote, headerNote, textNote));
