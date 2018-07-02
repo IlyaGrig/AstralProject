@@ -247,8 +247,8 @@ namespace AstralProject.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(MainPageController.Index), "Home");
-        }
+			return RedirectPermanent("~/MainPage");
+		}
 
         [HttpPost]
         [AllowAnonymous]

@@ -1,9 +1,11 @@
 ﻿@using AstralProject.Models.TestClasses;
 @model Note
+@inject UserManager<ApplicationUser> UserManager
 <h1>Измениние заметки</h1>
 <form method="post" action="~/MainPage/SaveUpdate">
     <input type="hidden" value="@Model.IdNote" name="idNote" />
     <input type="hidden" value="@Model.Base64Icon" name="base64Icon" />
+    <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" />
     <label for="nameNote">Название заметки</label>
     <input type="text" name="nameNote" id="nameNote" value="@Model.NoteName" /> <br /><br />
     <label for="headerNote">Описание заметки</label>

@@ -1,9 +1,10 @@
 ﻿@using AstralProject.Models.TestClasses;
 @model List<Note>
+@inject UserManager<ApplicationUser> UserManager
 <div>
     <h1>Главная страница </h1>
 </div>
-<label>@User.Identity.Name</label>
+@*<label>@UserManager.GetUserId(User)</label>*@
 <form method="post" action="~/MainPage/Search">
     <label for="nameNote">Поиск</label>
     <input type="text" name="searchText" id="searchText" /> <br /><br />
@@ -16,24 +17,27 @@
     <tbody>
         @foreach (var note in Model)
         {
-            <tr>
-                <td><img width="50" height="50" src="data:image/svg+xml;base64,@note.Base64Icon" /></td>
-                <td>@note.NoteName</td>
-                <td>@note.HeaderNote</td>
-                <td>@note.DateNote</td>
-                <td>
-                    <form method="post" action="~/MainPage/Update">
-                        <input type="hidden" value="@note.IdNote" name="idNote" />
-                        <input type="submit" value="Просмотр" />
-                    </form>
-                </td>
-                <td>
-                    <form method="post" action="~/MainPage/Delete">
-                        <input type="hidden" value="@note.IdNote" name="idNote" />
-                        <input type="submit" value="Удалить" />
-                    </form>
-                </td>
-            </tr>
+            if (note.UserId == UserManager.GetUserId(User))
+            {
+                <tr>
+                    <td><img width="50" height="50" src="data:image/svg+xml;base64,@note.Base64Icon" /></td>
+                    @*<td>@note.UserId</td>*@
+                    <td>@note.NoteName</td>
+                    <td>@note.HeaderNote</td>
+                    <td>@note.DateNote</td>
+                    <td>
+                        <form method="post" action="~/MainPage/Update">
+                            <input type="hidden" value="@note.IdNote" name="idNote" />
+                            <input type="submit" value="Просмотр" />
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="~/MainPage/Delete">
+                            <input type="hidden" value="@note.IdNote" name="idNote" />
+                            <input type="submit" value="Удалить" />
+                        </form>
+                    </td>
+                </tr>}
         }
     </tbody>
 </table>

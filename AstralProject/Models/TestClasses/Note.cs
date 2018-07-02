@@ -14,6 +14,7 @@ namespace AstralProject.Models.TestClasses
 		public static List<Note> GlobalNotes { get; set; }
 		public string Base64Icon { get; set; }
 		public int IdNote { get; set; }
+		public string UserId { get; set; }
 		public string NoteName { get; set; }
 		public string HeaderNote { get; set; }
 		public string TextNote { get; set; }
@@ -22,10 +23,11 @@ namespace AstralProject.Models.TestClasses
 		{
 			GlobalNotes = new List<Note>();
 		}
-		public Note(string noteName,string headerNote,string textNote)
+		public Note(string userId,string noteName,string headerNote,string textNote)
 		{
 			i++;
 			IdNote = i;
+			UserId = userId;
 			NoteName = noteName;
 			HeaderNote = headerNote;
 			TextNote = textNote;
