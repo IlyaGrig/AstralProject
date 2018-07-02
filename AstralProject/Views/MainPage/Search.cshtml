@@ -1,5 +1,9 @@
 ﻿@using AstralProject.Models.TestClasses;
 @model IEnumerable<Note>
+@inject UserManager<ApplicationUser> UserManager
+<div>
+    <h1>Главная страница</h1>
+</div>
 <form method="post" action="~/MainPage/Search">
     <label for="nameNote">Поиск</label>
     <input type="text" name="searchText" id="searchText" /> <br /><br />
@@ -7,12 +11,32 @@
 </form>
 <table class="table">
     <thead>
-        <tr><th>Название заметки</th><th>Краткое опсание</th></tr>
+        <tr><th>IconId</th><th>Название заметки</th><th>Краткое описание</th><th>Дата добавления</th></tr>
     </thead>
     <tbody>
         @foreach (var note in Model)
         {
-            <tr><td>@note.NoteName</td><td>@note.HeaderNote</td></tr>
+            if (note.UserId == UserManager.GetUserId(User))
+            {
+                <tr>
+                    <td><img width="50" height="50" src="data:image/svg+xml;base64,@note.Base64Icon" /></td>
+                    @*<td>@note.UserId</td>*@
+                    <td>@note.NoteName</td>
+                    <td>@note.HeaderNote</td>
+                    <td>@note.DateNote</td>
+                    <td>
+                        <form method="post" action="~/MainPage/Update">
+                            <input type="hidden" value="@note.IdNote" name="idNote" />
+                            <input type="submit" value="Просмотр" />
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="~/MainPage/Delete">
+                            <input type="hidden" value="@note.IdNote" name="idNote" />
+                            <input type="submit" value="Удалить" />
+                        </form>
+                    </td>
+                </tr>}
         }
     </tbody>
 </table>

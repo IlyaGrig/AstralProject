@@ -12,7 +12,11 @@ namespace AstralProject.Models.TestClasses
 		public SettingsSearch(List<Note> inListNote, string searchText)
 		{
 			InListNote = inListNote;
-			SearchText = searchText;
+			if (searchText == null)
+			{
+				SearchText = "";
+			}
+			else { SearchText = searchText; }
 		}
 
 		public IEnumerable<Note> Search ()

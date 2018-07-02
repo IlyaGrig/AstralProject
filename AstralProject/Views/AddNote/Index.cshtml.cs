@@ -18,7 +18,6 @@ namespace AstralProject.Views.AddNote
 		public void OnPost(string nameNote, string headerNote, string textNote)
 		{
 		
-			Note.GlobalNotes.Add(new Note(nameNote, headerNote, textNote));
 			Mes = $"Заметка {nameNote} добавлена";
 		}
 	}

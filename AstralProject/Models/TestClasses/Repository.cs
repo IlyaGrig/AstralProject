@@ -8,7 +8,7 @@ namespace AstralProject.Models.TestClasses
 	public class Repository : IRepository
 	{
 		public List<Note> NoteCollection { get; set; } = Note.GlobalNotes;
-		public List<User> UserCollection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public List<ApplicationUser> UserCollection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 		public static void DeleteFromCollection(int idNote)
 		{

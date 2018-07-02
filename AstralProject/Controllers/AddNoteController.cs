@@ -12,9 +12,12 @@ namespace AstralProject.Controllers
         }
 		
         [HttpPost]
-		public ActionResult AddNewNote(string nameNote, string headerNote, string textNote)
+		public ActionResult AddNewNote(string userId,string nameNote, string headerNote, string textNote)
 		{
-			Note.GlobalNotes.Add(new Note(nameNote, headerNote, textNote));
+			NotesDbContext context = new NotesDbContext();
+			context.Notes.Add(new Note(userId, nameNote, headerNote, textNote));
+			context.SaveChanges();
+			Note.UpdateFromCollection();
 			return RedirectPermanent("~/MainPage");
 	
 		}      
