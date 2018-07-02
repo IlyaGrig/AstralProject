@@ -42,11 +42,8 @@ namespace AstralProject.Models.TestClasses
 				{
 					MemoryStream q = new MemoryStream();
 					response.CopyTo(q);
-					byte[] byteArray = new byte[q.Length];
-					//while (response.CanRead)
-					//{
-						q.ReadAsync(byteArray, 0, (int)q.Length);
-					//}
+					byte[] byteArray = new byte[q.Length];					
+					q.ReadAsync(byteArray, 0, (int)q.Length);
 					imgInString64 = Convert.ToBase64String(byteArray);
 					
 				}
