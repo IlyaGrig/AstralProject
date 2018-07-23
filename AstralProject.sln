@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstralProject", "AstralProject\AstralProject.csproj", "{1279E655-D099-4D68-8E0F-335490ED5414}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{02840DBF-DAD1-4EC2-93CC-E122BF7E85CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{64B236D6-397A-4F7E-A494-568F83CCF627}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1279E655-D099-4D68-8E0F-335490ED5414}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1279E655-D099-4D68-8E0F-335490ED5414}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1279E655-D099-4D68-8E0F-335490ED5414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02840DBF-DAD1-4EC2-93CC-E122BF7E85CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02840DBF-DAD1-4EC2-93CC-E122BF7E85CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02840DBF-DAD1-4EC2-93CC-E122BF7E85CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02840DBF-DAD1-4EC2-93CC-E122BF7E85CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B236D6-397A-4F7E-A494-568F83CCF627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B236D6-397A-4F7E-A494-568F83CCF627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B236D6-397A-4F7E-A494-568F83CCF627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B236D6-397A-4F7E-A494-568F83CCF627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
