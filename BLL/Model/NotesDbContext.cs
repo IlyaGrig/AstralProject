@@ -17,7 +17,7 @@ namespace AstralProject.Models.TestClasses
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=NotesApp;Trusted_Connection=True;");
+			optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=NoteProj;Username=postgres;Password=");
 		}
 	}
 }
