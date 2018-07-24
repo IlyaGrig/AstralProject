@@ -1,4 +1,4 @@
-﻿using AstralProject.Models.TestClasses;
+﻿using BusinessLogicLayer;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,10 @@ namespace AstralProject.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return View(Note.GlobalNotes);
+			using (RepositoryService rep = new RepositoryService())
+			{
+				return View(rep.GetNoteList());
+			}
 		}
 
 		[HttpGet]
@@ -22,38 +25,40 @@ namespace AstralProject.Controllers
 		[HttpPost]
 		public ActionResult Search(string searchText)
 		{
-			SettingsSearch settingsSearch = new SettingsSearch(Note.GlobalNotes, searchText);
-			return View(settingsSearch.Search());
+			using (RepositoryService rep = new RepositoryService())
+			{
+				return View(rep.Search(searchText));
+			}
 
 		}
 		[HttpPost]
 		public ActionResult Update(int idNote)
 		{
-			Note noteForUpdate = Repository.UpdateCollection(idNote);
-			Note.UpdateFromCollection();
-			return View(noteForUpdate);
+			using (RepositoryService rep = new RepositoryService())
+			{
+				return View(rep.GetNote(idNote));
+			}
 		}
 
 		[HttpPost]
 		public ActionResult SaveUpdate(int idNote,string userId,string base64Icon,string nameNote, string headerNote, string textNote)
 		{
-			Note upNote = new Note(userId,nameNote, headerNote, textNote);
-			upNote.IdNote = idNote;
-			upNote.DateNote = DateTime.Now;
-			upNote.Base64Icon = base64Icon;
-			Repository.DeleteFromCollection(idNote);
-			Note.GlobalNotes.Add(upNote);
-			Note.UpdateFromCollection();
-			return RedirectPermanent("~/MainPage");
+			using (RepositoryService rep = new RepositoryService())
+			{
+				rep.UpdateNote(idNote,nameNote,headerNote,textNote);
+				return RedirectPermanent("~/MainPage");
+			}
 
 		}
 
 		[HttpPost]
 		public ActionResult Delete(int idNote)
 		{
-			Repository.DeleteFromCollection(idNote);
-			Note.UpdateFromCollection();
-			return View(Note.GlobalNotes);
+			using (RepositoryService rep = new RepositoryService())
+			{
+				rep.DeleteNote(idNote);
+				return View(rep.GetNoteList());
+			}
 		}
 	}
 }

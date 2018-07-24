@@ -1,20 +1,18 @@
-﻿using AstralProject.Models.TestClasses;
-using DataAccesLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DataAccesLayer;
 using System.Linq;
+using IconService;
 
-namespace BLL.Model
+namespace BusinessLogicLayer
 {
-    class RepositoryService : IRepository , IDisposable
-    {
-		private NotesDbContext db;
-
-		public List<Note> NoteCollection { get ; set ; }
+	public class RepositoryService : IRepository, IDisposable
+	{
+		private NoteListDbContext db;
 
 		public RepositoryService()
 		{
-			db = new NotesDbContext();
+			db = new NoteListDbContext();
 		}
 
 		public IEnumerable<Note> GetNoteList()
@@ -27,14 +25,16 @@ namespace BLL.Model
 			Note note = db.Notes.First(e => e.NoteId == id);
 			if (note != null)
 				db.Notes.Remove(note);
+			db.SaveChanges();
 		}
 
 		public void AddNote(string name, string header, string text, string userId)
 		{
-			Note newNote = new Note(userId,name,header,text);
+			Note newNote = new Note(userId, name, header, text);
 			newNote.DateNote = DateTime.Now;
-			newNote.Base64Icon = IconHelper.IconHelper.GetIconBase64();
+			newNote.Base64Icon = IconHelper.GetIconBase64();
 			db.Notes.Add(newNote);
+			db.SaveChanges();
 
 		}
 
@@ -42,15 +42,27 @@ namespace BLL.Model
 		{
 			Note note = db.Notes.First(e => e.NoteId == id);
 			if (note != null)
+			{
 				db.Notes.Remove(note);
 				note.NoteName = name; note.HeaderNote = header; note.TextNote = text;
 				note.DateNote = DateTime.Now;
 				db.Notes.Add(note);
-		}
-		
-		public void Save()
-		{
+			}
 			db.SaveChanges();
+		}
+
+		public IEnumerable<Note> Search(string searchingText)
+		{
+			Search _search = new Search(db.Notes.ToList(), searchingText);
+			return _search.GetNotesFound();
+		}
+
+		public Note GetNote (int id)
+		{
+			Note note = db.Notes.First(e => e.NoteId == id);
+			if (note != null)
+				return note;
+			return null;
 		}
 
 		public void Dispose()
@@ -58,6 +70,6 @@ namespace BLL.Model
 			db.Dispose();
 		}
 
-		
+
 	}
 }

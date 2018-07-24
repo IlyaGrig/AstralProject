@@ -4,7 +4,7 @@ using System.Net.Http;
 
 namespace API
 {
-    public class ApiIcon
+    public class IconHelper
     {
 		public static string GetIconBase64()
 		{

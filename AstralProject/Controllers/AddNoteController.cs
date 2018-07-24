@@ -1,5 +1,5 @@
-﻿using AstralProject.Models.TestClasses;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using BusinessLogicLayer;
 
 namespace AstralProject.Controllers
 {
@@ -17,8 +17,10 @@ namespace AstralProject.Controllers
 			//NotesDbContext context = new NotesDbContext();
 			//context.Notes.Add(new Note(userId, nameNote, headerNote, textNote));
 			//context.SaveChanges();
-			Note.GlobalNotes.Add(new Note(userId, nameNote, headerNote, textNote));
-			Note.UpdateFromCollection();
+			using (RepositoryService rep = new RepositoryService())
+			{
+				rep.AddNote(nameNote, headerNote, textNote, userId);
+			}
 			return RedirectPermanent("~/MainPage");
 	
 		}      

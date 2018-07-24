@@ -1,4 +1,4 @@
-﻿@using AstralProject.Models.TestClasses;
+﻿@using DataAccesLayer;
 @model List<Note>
 @inject UserManager<ApplicationUser> UserManager
 <div>
@@ -29,13 +29,13 @@
                     <td>@note.DateNote</td>
                     <td>
                         <form method="post" action="~/MainPage/Update">
-                            <input type="hidden" value="@note.IdNote" name="idNote" />
+                            <input type="hidden" value="@note.NoteId" name="idNote" />
                             <input type="submit" value="Просмотр" />
                         </form>
                     </td>
                     <td>
                         <form method="post" action="~/MainPage/Delete">
-                            <input type="hidden" value="@note.IdNote" name="idNote" />
+                            <input type="hidden" value="@note.NoteId" name="idNote" />
                             <input type="submit" value="Удалить" />
                         </form>
                     </td>
